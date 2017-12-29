@@ -10,13 +10,16 @@ class BooksController < ApplicationController
 
   def create
     # your code here
-    Book.create({title: book_params['title'], author: book_params['author']})
+    book = Book.new(book_params)
+    if book.save
+    else
+      flash[:notice] = book.errors.full_messages
+    end
     redirect_to '/books'
   end
 
   def destroy
     # your code here
-    raise "something"
     Book.find(params[:id]).destroy
     redirect_to '/books'
   end
