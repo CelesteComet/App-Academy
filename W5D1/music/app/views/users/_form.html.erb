@@ -1,0 +1,11 @@
+<h1>
+  <%= login ? 'Login' : 'Register' %>
+</h1>
+<form action=<%= login ? sessions_create_url : users_create_url %> method='POST'>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <label for='email'></label>
+  <input type="text" name="user[email]">
+  <label for='password'></label>
+  <input type="password" name="user[password]">
+  <input type="submit" value='Register'>
+</form>

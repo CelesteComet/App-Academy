@@ -1,0 +1,38 @@
+<style type="text/css">
+  .radio-set {
+    display: flex;
+    flex-direction: row;
+  }
+</style>
+
+<h1>Create a new album</h1>
+<form action='/albums' method='POST'>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <label for='title'>Name</label>
+  <input type="text" id='name' name="album[title]">
+  <select name='album[band_id]'>
+    <% Band.all.each do |band| %> 
+      <option 
+        value=<%= band.id %>>
+        <%= band.name %>
+      </option>
+    <% end %> 
+  </select>
+  <div class="radio-set">
+    <label for='live'>Live</label>
+    <input type="radio" id='live' name="album[live]">
+
+    <label for='studio'>Studio</label>
+    <input type="radio" id='studio' name="album[live]">
+  </div>
+  <label for='year'>Year</label>
+  <input 
+    type="number" 
+    min="1100" 
+    max="2199" 
+    step="1" 
+    value="2018" 
+    id='year' 
+    name="album[year]" />
+  <input type="submit" value='Create Album'>
+</form>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Music</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <style type="text/css">
+    html {
+      background: black
+    }
+
+    body {
+      width: 80%;
+      margin: 0 auto;
+      background: white;
+    }
+  </style>
+
+
+  <body>
+    <header>
+      <div class='user-info'>User: <%= current_user ? current_user.email : '' %></div>
+      <div class='login-logout'>
+        <% if logged_in? %> 
+          <%= link_to 'logout', sessions_destroy_url, method: :delete %>
+        <% else %>
+          <%= link_to 'login', '/sessions/new' %>
+          <%= link_to 'register', '/users/new' %>
+        <% end %>
+      </div>
+    </header>
+    <div class="errors">
+      <%= flash[:errors] %>
+    </div>
+    <%= yield %>
+  </body>
+</html>

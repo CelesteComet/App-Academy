@@ -1,0 +1,19 @@
+<style type="text/css">
+  .bands-list {
+    display: flex; 
+    flex-direction: row;
+  }
+</style>
+
+<h1>All Bands</h1>
+
+<div class="bands-list">
+  <% @bands.each do |band| %>
+    <%= render 'band_item', band: band %>
+  <% end %>
+</div>
+
+<h2>Links</h2>
+<ul>
+  <li><%= link_to 'Create New Band', new_band_url %></li>
+</ul>
